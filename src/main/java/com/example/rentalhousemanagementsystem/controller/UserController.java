@@ -32,9 +32,14 @@ public class UserController {
                 response.setMessage("Success");
                 response.setContent(userDTO);
                 return new ResponseEntity(response, HttpStatus.ACCEPTED);
-            } else {
-                response.setCode(VarList.RSP_ERROR);
+            } else if(res.equals("01")){
+                response.setCode(VarList.RSP_NO_DATA_FOUND);
                 response.setMessage("Username Already Use");
+                response.setContent(null);
+                return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+            }else {
+                response.setCode(VarList.RSP_ERROR);
+                response.setMessage("Error");
                 response.setContent(null);
                 return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
             }

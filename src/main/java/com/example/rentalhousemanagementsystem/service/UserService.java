@@ -32,7 +32,7 @@ public class UserService implements UserDetailsService {
 
     public String saveUser(UserDTO userDTO) {
         if (userRepository.existsByUsername(userDTO.getUsername())) {
-            return VarList.RSP_ERROR;
+            return VarList.RSP_NO_DATA_FOUND;
         } else {
             userRepository.save(modelMapper.map(userDTO, User.class));
             return VarList.RSP_SUCCESS;
