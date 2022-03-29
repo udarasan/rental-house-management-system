@@ -1,10 +1,10 @@
 package com.example.rentalhousemanagementsystem.service;
 
-import com.example.rentalhousemanagementsystem.dto.Response;
 import com.example.rentalhousemanagementsystem.dto.UserDTO;
 import com.example.rentalhousemanagementsystem.entity.User;
 import com.example.rentalhousemanagementsystem.repository.UserRepository;
 import com.example.rentalhousemanagementsystem.util.util.VarList;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +14,7 @@ import org.modelmapper.ModelMapper;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -49,6 +50,28 @@ public class UserService implements UserDetailsService {
             return VarList.RSP_NO_DATA_FOUND;
         }
     }
+    public String updateUser(UserDTO userDTO) {
+        if (userRepository.existsByUsername(userDTO.getUsername())) {
+            userRepository.save(modelMapper.map(userDTO, User.class));
+            return VarList.RSP_SUCCESS;
+        } else {
+            return VarList.RSP_NO_DATA_FOUND;
+        }
+    }
 
+    public List<UserDTO> getAllUsers() {
+        List<User> users=userRepository.findAll();
+        return modelMapper.map(users, new TypeToken<ArrayList<UserDTO>>() {
+        }.getType());
+    }
+
+    public UserDTO searchUser(String username) {
+        if (userRepository.existsByUsername(username)) {
+            User user=userRepository.findByUsername(username);
+            return modelMapper.map(user,UserDTO.class);
+        } else {
+            return null;
+        }
+    }
 
 }
