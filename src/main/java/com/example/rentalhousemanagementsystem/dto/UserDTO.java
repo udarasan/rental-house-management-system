@@ -10,9 +10,16 @@ import lombok.NoArgsConstructor;
 @Data
 public class UserDTO {
     @JsonIgnore
-    private long id;
-    private String username;
+    private Long id;
     private String password;
     private String roleCode;
-    private String userLevel;
+    private String address;
+    private String username;
+    private String status;
+    private String phoneNo1;
+    private String phoneNo2;
+    private String idPhoto;
+    private String remarks;
+    private String email;
+    private String name;
 }

@@ -29,7 +29,6 @@ public class AuthController {
 
     @PostMapping("/authenticate")
     public String authenticate(@RequestBody UserDTO userDTO) throws Exception{
-
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(

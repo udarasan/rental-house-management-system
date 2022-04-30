@@ -1,6 +1,5 @@
 package com.example.rentalhousemanagementsystem.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,15 +14,18 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column
-    private String username;
-    @Column
-    @JsonIgnore
+    private Long id;
     private String password;
-    @Column
     private String roleCode;
-    @Column
-    private String userLevel;
+    private String address;
+    private String username;
+    private String status;
+    private String phoneNo1;
+    private String phoneNo2;
+    private String idPhoto;
+    private String remarks;
+    private String email;
+    private String name;
+
 
 }
