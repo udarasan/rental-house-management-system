@@ -47,7 +47,7 @@ public class DefectService {
     }
     public List<DefectDTO> getAllDefects() {
         List<Defect> defects=defectRepository.findAll();
-        return modelMapper.map(defects, new TypeToken<ArrayList<PaymentDTO>>() {
+        return modelMapper.map(defects, new TypeToken<ArrayList<DefectDTO>>() {
         }.getType());
     }
 }
