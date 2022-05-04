@@ -1,9 +1,13 @@
 package com.example.rentalhousemanagementsystem.controller;
 
+import com.example.rentalhousemanagementsystem.dto.ResponseDTO;
 import com.example.rentalhousemanagementsystem.dto.UserDTO;
 import com.example.rentalhousemanagementsystem.service.UserService;
 import com.example.rentalhousemanagementsystem.util.util.JwtUtil;
+import com.example.rentalhousemanagementsystem.util.util.VarList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,13 +26,16 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ResponseDTO responseDTO;
+
     @GetMapping("/")
     public String welcome() {
         return "Welcome to udara-san !!";
     }
 
     @PostMapping("/authenticate")
-    public String authenticate(@RequestBody UserDTO userDTO) throws Exception{
+    public ResponseEntity authenticate(@RequestBody UserDTO userDTO) throws Exception{
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -45,8 +52,10 @@ public class AuthController {
 
         final String token =
                 jwtUtil.generateToken(userDetails);
-
-        return token;
+        responseDTO.setCode(VarList.RSP_SUCCESS);
+        responseDTO.setMessage("Success");
+        responseDTO.setContent(token);
+        return new ResponseEntity(responseDTO, HttpStatus.OK);
     }
 
 }
