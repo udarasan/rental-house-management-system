@@ -1,5 +1,6 @@
 package com.example.rentalhousemanagementsystem.controller;
 
+import com.example.rentalhousemanagementsystem.dto.AuthDTO;
 import com.example.rentalhousemanagementsystem.dto.ResponseDTO;
 import com.example.rentalhousemanagementsystem.dto.UserDTO;
 import com.example.rentalhousemanagementsystem.service.UserService;
@@ -13,6 +14,8 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("api/v1/auth")
@@ -53,9 +56,22 @@ public class AuthController {
 
         final String token =
                 jwtUtil.generateToken(userDetails);
-        responseDTO.setCode(VarList.RSP_SUCCESS);
-        responseDTO.setMessage("Success");
-        responseDTO.setContent(token);
+
+        if (token!=null  && !token.isEmpty() ){
+
+            UserDTO userDTO1=userService.loadUserDetailsByUsername(userDTO.getUsername());
+            AuthDTO authDTO = new AuthDTO();
+            authDTO.setUsername(userDTO1.getName());
+            authDTO.setToken(token);
+
+            responseDTO.setCode(VarList.RSP_SUCCESS);
+            responseDTO.setMessage("Success");
+            responseDTO.setContent(authDTO);
+            return new ResponseEntity(responseDTO, HttpStatus.OK);
+        }
+        responseDTO.setCode(VarList.RSP_ERROR);
+        responseDTO.setMessage("User Name Not Found");
+        responseDTO.setContent(null);
         return new ResponseEntity(responseDTO, HttpStatus.OK);
     }
 

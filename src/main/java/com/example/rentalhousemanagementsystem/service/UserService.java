@@ -32,6 +32,10 @@ public class UserService implements UserDetailsService {
         User user = userRepository.findByUsername(username);
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
     }
+    public UserDTO loadUserDetailsByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+        return modelMapper.map(user,UserDTO.class);
+    }
 
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
