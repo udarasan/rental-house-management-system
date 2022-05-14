@@ -21,6 +21,8 @@ public class RentedProperty {
     private String rentalAgreementDocsDescription;
     private String rentalAgreementDocs;
     private String remarks;
+    private String initialKeyMoney;
+    private String currentKeyMoneyBalance;
 
     @ManyToOne
     @JoinColumn(name = "rented_unit_id", referencedColumnName = "unitId")

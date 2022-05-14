@@ -19,4 +19,6 @@ public class RentedPropertyDTO {
     private String remarks;
     private Property rented_unit_id;
     private User current_tenant_nic;
+    private String initialKeyMoney;
+    private String currentKeyMoneyBalance;
 }

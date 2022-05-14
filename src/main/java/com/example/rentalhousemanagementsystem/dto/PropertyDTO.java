@@ -17,6 +17,4 @@ public class PropertyDTO {
     private String propertyOtherImages;
     private String outOfOrderStatus;
     private String remarks;
-    private String initialKeyMoney;
-    private String currentKeyMoneyBalance;
 }

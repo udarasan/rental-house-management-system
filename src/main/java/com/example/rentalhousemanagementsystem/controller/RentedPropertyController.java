@@ -18,6 +18,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("api/v1/rentedProperty")
+@CrossOrigin
 public class RentedPropertyController {
 
     @Autowired

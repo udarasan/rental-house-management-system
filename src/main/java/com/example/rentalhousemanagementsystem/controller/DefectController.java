@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Objects;
 @RestController
 @RequestMapping("api/v1/defect")
+@CrossOrigin
 public class DefectController {
     @Autowired
     private DefectService defectService;

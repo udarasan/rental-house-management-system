@@ -5,22 +5,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
 @Entity
-@Table(name = "property")
+@Table(name = "keymoney")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Property {
+public class KeyMoney {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int unitId;
+    private int transactionID;
+    private String value;
+    private String date;
     private String description;
-    private String unitAddress;
-    private String importantPropertyDocsDesc;
-    private String importantDocDownload;
-    private String propertyCoverImage;
-    private String propertyOtherImages;
-    private String outOfOrderStatus;
+    private String deductedBy;
     private String remarks;
+    private String rentedPropertyID;
 }
