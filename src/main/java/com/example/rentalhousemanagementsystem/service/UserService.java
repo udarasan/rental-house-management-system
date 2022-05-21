@@ -62,7 +62,10 @@ public class UserService implements UserDetailsService {
     }
     public String updateUser(UserDTO userDTO) {
         if (userRepository.existsByUsername(userDTO.getUsername())) {
-            userRepository.save(modelMapper.map(userDTO, User.class));
+            userRepository.updateUser(userDTO.getAddress(),userDTO.getEmail(),
+                    userDTO.getIdPhoto(),userDTO.getName(),userDTO.getPassword(),
+                    userDTO.getPhoneNo1(),userDTO.getPhoneNo2(),userDTO.getRemarks(),
+                    userDTO.getRoleCode(),userDTO.getStatus(),userDTO.getUsername());
             return VarList.RSP_SUCCESS;
         } else {
             return VarList.RSP_NO_DATA_FOUND;
