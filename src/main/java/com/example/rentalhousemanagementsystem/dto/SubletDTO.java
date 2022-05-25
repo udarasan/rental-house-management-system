@@ -1,20 +1,13 @@
-package com.example.rentalhousemanagementsystem.entity;
+package com.example.rentalhousemanagementsystem.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "sublet")
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-public class Sublet {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@NoArgsConstructor
+@AllArgsConstructor
+public class SubletDTO {
     private int subletRecordID;
     private String subletNIC;
     private String name;
@@ -23,5 +16,4 @@ public class Sublet {
     private String subleaseEndDate;
     private String subletIDPhotos;
     private String remarks;
-
 }
