@@ -2,6 +2,7 @@ package com.example.rentalhousemanagementsystem.controller;
 
 import com.example.rentalhousemanagementsystem.dto.RentedPropertyDTO;
 import com.example.rentalhousemanagementsystem.dto.ResponseDTO;
+import com.example.rentalhousemanagementsystem.dto.UserDTO;
 import com.example.rentalhousemanagementsystem.service.RentedPropertyService;
 import com.example.rentalhousemanagementsystem.util.util.FileUploadUtil;
 import com.example.rentalhousemanagementsystem.util.util.VarList;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -77,5 +79,21 @@ public class RentedPropertyController {
             responseDTO.setContent(e);
             return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    @GetMapping("/getAllRentedProperty")
+    public ResponseEntity getAllRentedProperty() {
+        try{
+            List<RentedPropertyDTO> propertyDTOList = rentedPropertyService.getAllProperty();
+            responseDTO.setCode(VarList.RSP_SUCCESS);
+            responseDTO.setMessage("Success");
+            responseDTO.setContent(propertyDTOList);
+            return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            responseDTO.setCode(VarList.RSP_ERROR);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setContent(e);
+            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 }
