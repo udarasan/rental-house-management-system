@@ -48,4 +48,12 @@ public class PropertyService {
         return modelMapper.map(propertyList, new TypeToken<ArrayList<PropertyDTO>>() {
         }.getType());
     }
+    public PropertyDTO searchProperty(int unitId) {
+        if (propertyRepository.existsByUnitId(unitId)) {
+            Property property=propertyRepository.findByUnitId(unitId);
+            return modelMapper.map(property,PropertyDTO.class);
+        } else {
+            return null;
+        }
+    }
 }
