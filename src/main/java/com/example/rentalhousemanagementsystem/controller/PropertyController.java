@@ -2,6 +2,7 @@ package com.example.rentalhousemanagementsystem.controller;
 
 import com.example.rentalhousemanagementsystem.dto.PropertyDTO;
 import com.example.rentalhousemanagementsystem.dto.ResponseDTO;
+import com.example.rentalhousemanagementsystem.dto.UserDTO;
 import com.example.rentalhousemanagementsystem.service.PropertyService;
 import com.example.rentalhousemanagementsystem.util.util.FileUploadUtil;
 import com.example.rentalhousemanagementsystem.util.util.VarList;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -105,5 +107,22 @@ public class PropertyController {
             responseDTO.setContent(e);
             return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/getAllProperty")
+    public ResponseEntity getAllUsers() {
+        try{
+            List<PropertyDTO> propertyDTOList = propertyService.getAllUsers();
+            responseDTO.setCode(VarList.RSP_SUCCESS);
+            responseDTO.setMessage("Success");
+            responseDTO.setContent(propertyDTOList);
+            return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            responseDTO.setCode(VarList.RSP_ERROR);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setContent(e);
+            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 }
