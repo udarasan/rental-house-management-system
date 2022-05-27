@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RentedPropertyRepository extends JpaRepository<RentedProperty,Integer> {
     boolean existsByRecordId(int uid);
+    RentedProperty findByRecordId(int recordId);
 }

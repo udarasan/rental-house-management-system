@@ -1,5 +1,6 @@
 package com.example.rentalhousemanagementsystem.controller;
 
+import com.example.rentalhousemanagementsystem.dto.PropertyDTO;
 import com.example.rentalhousemanagementsystem.dto.RentedPropertyDTO;
 import com.example.rentalhousemanagementsystem.dto.ResponseDTO;
 import com.example.rentalhousemanagementsystem.dto.UserDTO;
@@ -80,10 +81,38 @@ public class RentedPropertyController {
             return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PostMapping(value = "/update")
+    public ResponseEntity updateRentedProperty(@RequestBody RentedPropertyDTO rentedPropertyDTO){
+        try {
+            String res=rentedPropertyService.updateRentedProperty(rentedPropertyDTO);
+            if (res.equals("00")) {
+                responseDTO.setCode(VarList.RSP_SUCCESS);
+                responseDTO.setMessage("Success");
+                responseDTO.setContent(rentedPropertyDTO);
+                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+            } else if (res.equals("01")) {
+                responseDTO.setCode(VarList.RSP_DUPLICATED);
+                responseDTO.setMessage("Not Registered rentedProperty");
+                responseDTO.setContent(null);
+                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
+            } else {
+                responseDTO.setCode(VarList.RSP_FAIL);
+                responseDTO.setMessage("Error");
+                responseDTO.setContent(null);
+                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
+            }
+        }catch (Exception e){
+            responseDTO.setCode(VarList.RSP_ERROR);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setContent(e);
+            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/getAllRentedProperty")
     public ResponseEntity getAllRentedProperty() {
         try{
-            List<RentedPropertyDTO> propertyDTOList = rentedPropertyService.getAllProperty();
+            List<RentedPropertyDTO> propertyDTOList = rentedPropertyService.getAllRentedProperty();
             responseDTO.setCode(VarList.RSP_SUCCESS);
             responseDTO.setMessage("Success");
             responseDTO.setContent(propertyDTOList);
@@ -95,5 +124,27 @@ public class RentedPropertyController {
             return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+    @PostMapping("/searchRentedProperty/{recordID}")
+    public ResponseEntity searchRentedProperty(@PathVariable int recordID) {
+        try {
+            RentedPropertyDTO rentedPropertyDTO = rentedPropertyService.searchRentedProperty(recordID);
+            if (rentedPropertyDTO !=null) {
+                responseDTO.setCode(VarList.RSP_SUCCESS);
+                responseDTO.setMessage("Success");
+                responseDTO.setContent(rentedPropertyDTO);
+                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+            } else {
+                responseDTO.setCode(VarList.RSP_NO_DATA_FOUND);
+                responseDTO.setMessage("No PropertyDTO Available For this name");
+                responseDTO.setContent(null);
+                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.RSP_ERROR);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setContent(e);
+            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

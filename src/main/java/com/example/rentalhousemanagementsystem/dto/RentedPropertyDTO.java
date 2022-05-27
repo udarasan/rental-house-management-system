@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class RentedPropertyDTO {
     private Integer recordId;
-    private Integer rentedPropertyStatus;
+    private String rentedPropertyStatus;
     private String rentalStartDate;
     private String rentalEndDate;
     private String rentalAgreementDocsDescription;

@@ -15,7 +15,7 @@ public class RentedProperty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer recordId;
-    private Integer rentedPropertyStatus;
+    private String rentedPropertyStatus;
     private String rentalStartDate;
     private String rentalEndDate;
     private String rentalAgreementDocsDescription;
@@ -29,7 +29,7 @@ public class RentedProperty {
     private Property rented_unit_id;
 
     @ManyToOne
-    @JoinColumn(name = "current_tenant_nic", referencedColumnName = "id")
+    @JoinColumn(name = "current_tenant_nic", referencedColumnName = "username")
     private User current_tenant_nic;
 
 }

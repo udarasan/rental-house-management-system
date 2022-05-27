@@ -37,9 +37,26 @@ public class RentedPropertyService {
         }
 
     }
-    public List<RentedPropertyDTO> getAllProperty() {
+    public String updateRentedProperty(RentedPropertyDTO rentedPropertyDTO){
+        if (rentedPropertyRepository.existsByRecordId(rentedPropertyDTO.getRecordId())){
+            rentedPropertyRepository.save(modelMapper.map(rentedPropertyDTO,RentedProperty.class));
+            return VarList.RSP_SUCCESS;
+        }else {
+            return VarList.RSP_NO_DATA_FOUND;
+        }
+
+    }
+    public List<RentedPropertyDTO> getAllRentedProperty() {
         List<RentedProperty> rentedProperties=rentedPropertyRepository.findAll();
         return modelMapper.map(rentedProperties, new TypeToken<ArrayList<RentedPropertyDTO>>() {
         }.getType());
+    }
+    public RentedPropertyDTO searchRentedProperty(int recordId) {
+        if (rentedPropertyRepository.existsByRecordId(recordId)) {
+            RentedProperty rentedProperty=rentedPropertyRepository.findByRecordId(recordId);
+            return modelMapper.map(rentedProperty,RentedPropertyDTO.class);
+        } else {
+            return null;
+        }
     }
 }
