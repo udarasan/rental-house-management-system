@@ -11,7 +11,6 @@ public class MaintenanceDTO {
     private int appointmentID;
     private String description;
     private String maintenanceFor;  // PropertyId
-    private String currentResident;  // User NIC
     private String scheduleDateTime;
     private String EstimatedTimeFrame;
     private String tenantSignOff;

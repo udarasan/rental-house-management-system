@@ -3,8 +3,10 @@ package com.example.rentalhousemanagementsystem.service;
 import com.example.rentalhousemanagementsystem.dto.DefectDTO;
 import com.example.rentalhousemanagementsystem.dto.MaintenanceDTO;
 import com.example.rentalhousemanagementsystem.dto.PaymentDTO;
+import com.example.rentalhousemanagementsystem.dto.PropertyDTO;
 import com.example.rentalhousemanagementsystem.entity.Defect;
 import com.example.rentalhousemanagementsystem.entity.Maintenance;
+import com.example.rentalhousemanagementsystem.entity.Property;
 import com.example.rentalhousemanagementsystem.repository.DefectRepository;
 import com.example.rentalhousemanagementsystem.repository.MaintenanceRepository;
 import com.example.rentalhousemanagementsystem.util.util.VarList;
@@ -49,5 +51,13 @@ public class MaintenanceService {
         List<Maintenance> maintenances=maintenanceRepository.findAll();
         return modelMapper.map(maintenances, new TypeToken<ArrayList<MaintenanceDTO>>() {
         }.getType());
+    }
+    public MaintenanceDTO searchMaintenance(int appointmentID) {
+        if (maintenanceRepository.existsByAppointmentID(appointmentID)) {
+            Maintenance maintenance=maintenanceRepository.findByAppointmentID(appointmentID);
+            return modelMapper.map(maintenance,MaintenanceDTO.class);
+        } else {
+            return null;
+        }
     }
 }

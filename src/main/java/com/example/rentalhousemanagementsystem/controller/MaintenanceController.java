@@ -2,6 +2,7 @@ package com.example.rentalhousemanagementsystem.controller;
 
 import com.example.rentalhousemanagementsystem.dto.DefectDTO;
 import com.example.rentalhousemanagementsystem.dto.MaintenanceDTO;
+import com.example.rentalhousemanagementsystem.dto.PropertyDTO;
 import com.example.rentalhousemanagementsystem.dto.ResponseDTO;
 import com.example.rentalhousemanagementsystem.service.DefectService;
 import com.example.rentalhousemanagementsystem.service.MaintenanceService;
@@ -123,5 +124,27 @@ public class MaintenanceController {
             return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+    @PostMapping("/searchMaintenance/{appointmentID}")
+    public ResponseEntity searchUser(@PathVariable int appointmentID) {
+        try {
+            MaintenanceDTO maintenanceDTO = maintenanceService.searchMaintenance(appointmentID);
+            if (maintenanceDTO !=null) {
+                responseDTO.setCode(VarList.RSP_SUCCESS);
+                responseDTO.setMessage("Success");
+                responseDTO.setContent(maintenanceDTO);
+                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+            } else {
+                responseDTO.setCode(VarList.RSP_NO_DATA_FOUND);
+                responseDTO.setMessage("No PropertyDTO Available For this name");
+                responseDTO.setContent(null);
+                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.RSP_ERROR);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setContent(e);
+            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
