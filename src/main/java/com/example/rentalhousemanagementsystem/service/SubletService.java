@@ -1,8 +1,10 @@
 package com.example.rentalhousemanagementsystem.service;
 
 import com.example.rentalhousemanagementsystem.dto.DefectDTO;
+import com.example.rentalhousemanagementsystem.dto.PaymentDTO;
 import com.example.rentalhousemanagementsystem.dto.SubletDTO;
 import com.example.rentalhousemanagementsystem.entity.Defect;
+import com.example.rentalhousemanagementsystem.entity.Payment;
 import com.example.rentalhousemanagementsystem.entity.Sublet;
 import com.example.rentalhousemanagementsystem.repository.DefectRepository;
 import com.example.rentalhousemanagementsystem.repository.SubletRepository;
@@ -48,5 +50,13 @@ public class SubletService {
         List<Sublet> subletList=subletRepository.findAll();
         return modelMapper.map(subletList, new TypeToken<ArrayList<SubletDTO>>() {
         }.getType());
+    }
+    public SubletDTO searchSublets(int subletRecordID) {
+        if (subletRepository.existsBySubletRecordID(subletRecordID)) {
+            Sublet sublet=subletRepository.findBySubletRecordID(subletRecordID);
+            return modelMapper.map(sublet,SubletDTO.class);
+        } else {
+            return null;
+        }
     }
 }

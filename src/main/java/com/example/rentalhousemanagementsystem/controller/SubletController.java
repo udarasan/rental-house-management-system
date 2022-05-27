@@ -1,6 +1,7 @@
 package com.example.rentalhousemanagementsystem.controller;
 
 import com.example.rentalhousemanagementsystem.dto.DefectDTO;
+import com.example.rentalhousemanagementsystem.dto.PropertyDTO;
 import com.example.rentalhousemanagementsystem.dto.ResponseDTO;
 import com.example.rentalhousemanagementsystem.dto.SubletDTO;
 import com.example.rentalhousemanagementsystem.service.DefectService;
@@ -121,5 +122,28 @@ public class SubletController {
             return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+    }
+
+    @PostMapping("/searchSublets/{subletRecordID}")
+    public ResponseEntity searchSublets (@PathVariable int subletRecordID) {
+        try {
+            SubletDTO subletDTO = subletService.searchSublets(subletRecordID);
+            if (subletDTO !=null) {
+                responseDTO.setCode(VarList.RSP_SUCCESS);
+                responseDTO.setMessage("Success");
+                responseDTO.setContent(subletDTO);
+                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+            } else {
+                responseDTO.setCode(VarList.RSP_NO_DATA_FOUND);
+                responseDTO.setMessage("No subletDTO Available For this name");
+                responseDTO.setContent(null);
+                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.RSP_ERROR);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setContent(e);
+            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

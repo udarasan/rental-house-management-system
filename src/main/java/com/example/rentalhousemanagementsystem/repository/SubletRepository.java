@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface SubletRepository extends JpaRepository<Sublet,Integer> {
 
     boolean existsBySubletRecordID(int subletRecordID);
+    Sublet findBySubletRecordID(int subletRecordID);
 }
