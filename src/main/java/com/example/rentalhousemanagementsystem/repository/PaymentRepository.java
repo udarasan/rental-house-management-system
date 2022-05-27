@@ -13,5 +13,8 @@ public interface PaymentRepository extends JpaRepository<Payment,Long> {
     void changePaymentStatus(String paymentId,String paymentStatus);
 
 
+    Payment findByPaymentId(int paymentId);
+
+
 
 }

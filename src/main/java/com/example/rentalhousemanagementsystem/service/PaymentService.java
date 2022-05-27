@@ -51,4 +51,22 @@ public class PaymentService {
         return modelMapper.map(payments, new TypeToken<ArrayList<PaymentDTO>>() {
         }.getType());
     }
+    public PaymentDTO searchPayments(int paymentId) {
+        if (paymentRepository.existsByPaymentId(paymentId)) {
+            Payment Payment=paymentRepository.findByPaymentId(paymentId);
+            return modelMapper.map(Payment,PaymentDTO.class);
+        } else {
+            return null;
+        }
+    }
+    public String updatePayments(PaymentDTO paymentDTO){
+        if (paymentRepository.existsByPaymentId(paymentDTO.getPaymentId())){
+            paymentRepository.save(modelMapper.map(paymentDTO,Payment.class));
+            return VarList.RSP_SUCCESS;
+        }else {
+            return VarList.RSP_NO_DATA_FOUND;
+        }
+
+    }
+
 }

@@ -13,6 +13,7 @@ public class PaymentDTO {
     private String status;
     private String paymentDate;
     private String paidFor;
+    private String paidBy;
     private String amount;
     private String remarks;
 }
