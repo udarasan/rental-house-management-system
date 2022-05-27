@@ -53,8 +53,8 @@ public class PaymentService {
     }
     public PaymentDTO searchPayments(int paymentId) {
         if (paymentRepository.existsByPaymentId(paymentId)) {
-            Payment Payment=paymentRepository.findByPaymentId(paymentId);
-            return modelMapper.map(Payment,PaymentDTO.class);
+            Payment payment=paymentRepository.findByPaymentId(paymentId);
+            return modelMapper.map(payment,PaymentDTO.class);
         } else {
             return null;
         }
