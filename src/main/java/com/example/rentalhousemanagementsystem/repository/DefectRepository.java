@@ -7,4 +7,6 @@ public interface DefectRepository  extends JpaRepository<Defect,Integer> {
 
 
     boolean existsByDefectId(int defectId);
+
+    Defect findByDefectId(int defectId);
 }

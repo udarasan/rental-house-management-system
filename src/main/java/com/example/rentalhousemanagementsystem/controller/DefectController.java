@@ -121,4 +121,26 @@ public class DefectController {
         }
 
     }
+    @PostMapping("/searchDefect/{defectId}")
+    public ResponseEntity searchPayments(@PathVariable int defectId) {
+        try {
+            DefectDTO defectDTO = defectService.searchDefects(defectId);
+            if (defectDTO !=null) {
+                responseDTO.setCode(VarList.RSP_SUCCESS);
+                responseDTO.setMessage("Success");
+                responseDTO.setContent(defectDTO);
+                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+            } else {
+                responseDTO.setCode(VarList.RSP_NO_DATA_FOUND);
+                responseDTO.setMessage("No PropertyDTO Available For this name");
+                responseDTO.setContent(null);
+                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.RSP_ERROR);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setContent(e);
+            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

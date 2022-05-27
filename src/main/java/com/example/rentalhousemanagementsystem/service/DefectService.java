@@ -50,4 +50,12 @@ public class DefectService {
         return modelMapper.map(defects, new TypeToken<ArrayList<DefectDTO>>() {
         }.getType());
     }
+    public DefectDTO searchDefects(int defectId) {
+        if (defectRepository.existsByDefectId(defectId)) {
+            Defect defect=defectRepository.findByDefectId(defectId);
+            return modelMapper.map(defect,DefectDTO.class);
+        } else {
+            return null;
+        }
+    }
 }
