@@ -5,13 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "property")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Property {
+public class Property implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int unitId;

@@ -39,6 +39,7 @@ public class AuthController {
 
     @PostMapping("/authenticate")
     public ResponseEntity authenticate(@RequestBody UserDTO userDTO) throws Exception{
+        System.out.println(userDTO);
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(

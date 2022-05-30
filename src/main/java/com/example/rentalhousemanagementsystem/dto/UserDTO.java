@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UserDTO {
-    @JsonIgnore
-    private Long id;
     private String password;
     private String roleCode;
     private String address;

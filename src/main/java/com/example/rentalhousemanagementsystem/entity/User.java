@@ -5,19 +5,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "systemuser")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User implements Serializable {
     private String password;
     private String roleCode;
     private String address;
+    @Id
     private String username;
     private String status;
     private String phoneNo1;
