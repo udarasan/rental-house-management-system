@@ -1,5 +1,7 @@
 package com.example.rentalhousemanagementsystem.dto;
 
+import com.example.rentalhousemanagementsystem.entity.RentedProperty;
+import com.example.rentalhousemanagementsystem.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +14,7 @@ public class KeyMoneyDTO {
     private String value;
     private String date;
     private String description;
-    private String deductedBy;
+    private User deductedBy;
     private String remarks;
-    private String rentedPropertyID;
+    private RentedProperty rentedPropertyID;
 }

@@ -19,7 +19,7 @@ public class KeyMoneyController {
     private KeyMoneyService keyMoneyService;
     @Autowired
     private ResponseDTO responseDTO;
-    @PostMapping(value = "/saveDefect")
+    @PostMapping(value = "/saveKeyMoney")
     public ResponseEntity saveRentedProperty(@RequestBody KeyMoneyDTO keyMoneyDTO ){
         try {
             String res=keyMoneyService.saveKeyMoneyRecord(keyMoneyDTO);
@@ -30,7 +30,7 @@ public class KeyMoneyController {
                 return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
             } else if (res.equals("06")) {
                 responseDTO.setCode(VarList.RSP_DUPLICATED);
-                responseDTO.setMessage("keyMoney Transaction ID Already Registered");
+                responseDTO.setMessage("keyMoney ID Already Registered");
                 responseDTO.setContent(null);
                 return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
             } else {
@@ -46,7 +46,7 @@ public class KeyMoneyController {
             return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping(value = "/update")
+    @PostMapping(value = "/updateKeyMoney")
     public ResponseEntity updateKeyMoneyRecord(@RequestBody KeyMoneyDTO keyMoneyDTO){
         try {
             String res=keyMoneyService.updateKeyMoneyRecord(keyMoneyDTO);
