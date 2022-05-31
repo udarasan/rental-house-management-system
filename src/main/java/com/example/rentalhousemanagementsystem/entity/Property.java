@@ -20,8 +20,6 @@ public class Property implements Serializable {
     private String unitAddress;
     private String importantPropertyDocsDesc;
     private String importantDocDownload;
-    private String propertyCoverImage;
-    private String propertyOtherImages;
     private String outOfOrderStatus;
     private String remarks;
 }
