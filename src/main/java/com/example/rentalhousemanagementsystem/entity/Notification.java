@@ -18,5 +18,6 @@ public class Notification {
     private String messageSubject;
     private String messageBody;
     private String receiverEmail;
+    private String date;
 
 }
