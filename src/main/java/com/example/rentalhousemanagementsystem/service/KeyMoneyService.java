@@ -36,12 +36,10 @@ public class KeyMoneyService {
             int currentKeyMoneyValue = Integer.parseInt(rentedPropertyRepository.getCurrentKeyMoneyValue(keyMoneyDTO.getRentedPropertyID().getRecordId()));
             int deductionValue = Integer.parseInt(keyMoneyDTO.getValue());
             int newKeyMoneyValue;
-            if (currentKeyMoneyValue > deductionValue) {
+
                 newKeyMoneyValue = currentKeyMoneyValue - deductionValue;
                 rentedPropertyRepository.updateCurrentKeyMoneyValue(String.valueOf(newKeyMoneyValue), keyMoneyDTO.getRentedPropertyID().getRecordId());
-            }else {
-                return VarList.RSP_FAIL;
-            }
+
 
             keyMoneyRepository.save(modelMapper.map(keyMoneyDTO, KeyMoney.class));
             return VarList.RSP_SUCCESS;
