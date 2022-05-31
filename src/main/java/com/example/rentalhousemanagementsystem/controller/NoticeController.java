@@ -17,6 +17,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+
+@RestController
+@RequestMapping("api/v1/notice")
 public class NoticeController {
 
     @Autowired

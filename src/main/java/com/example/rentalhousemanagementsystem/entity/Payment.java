@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long paymentId;
+    private int paymentId;
     private String description;
     private String status;
     private String paymentDate;

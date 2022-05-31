@@ -38,7 +38,7 @@ public class PaymentService {
 
     }
     public String changePaymentStatus(String paymentId,String paymentStatus){
-        if (paymentRepository.existsByPaymentId(Long.parseLong(paymentId))){
+        if (paymentRepository.existsByPaymentId(Integer.parseInt((paymentId)))){
             paymentRepository.changePaymentStatus(paymentId,paymentStatus);
             return VarList.RSP_SUCCESS;
         }else {
