@@ -95,7 +95,7 @@ public class PaymentController {
         }
 
     }
-    @PostMapping("/searchPayments/{unitId}")
+    @PostMapping("/searchPayments/{paymentId}")
     public ResponseEntity searchPayments(@PathVariable int paymentId) {
         try {
             PaymentDTO paymentDTO = paymentService.searchPayments(paymentId);
