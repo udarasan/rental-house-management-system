@@ -15,7 +15,7 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long paymentId;
-    private String Description;
+    private String description;
     private String status;
     private String paymentDate;
     private String paidFor;
