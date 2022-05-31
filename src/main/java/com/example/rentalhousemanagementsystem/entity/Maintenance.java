@@ -17,7 +17,7 @@ public class Maintenance {
     private int appointmentID;
     private String description;
     private String scheduleDateTime;
-    private String EstimatedTimeFrame;
+    private String estimatedTimeFrame;
     private String tenantSignOff;
     private String proofUpload;
     private String remarks;

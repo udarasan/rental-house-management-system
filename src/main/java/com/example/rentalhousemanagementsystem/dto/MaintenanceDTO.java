@@ -14,7 +14,7 @@ public class MaintenanceDTO {
     private String description;
     private RentedProperty maintenanceFor;  // PropertyId
     private String scheduleDateTime;
-    private String EstimatedTimeFrame;
+    private String estimatedTimeFrame;
     private String tenantSignOff;
     private String proofUpload;
     private String remarks;
