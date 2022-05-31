@@ -17,7 +17,15 @@ public class KeyMoney {
     private String value;
     private String date;
     private String description;
-    private String deductedBy;
     private String remarks;
-    private String rentedPropertyID;
+
+    @ManyToOne
+    @JoinColumn(name = "deductedBy", referencedColumnName = "username")
+    private User deductedBy;
+
+    @ManyToOne
+    @JoinColumn(name = "rentedPropertyID", referencedColumnName = "recordId")
+    private RentedProperty rentedPropertyID;
+
+
 }

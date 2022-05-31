@@ -16,13 +16,14 @@ public class Maintenance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int appointmentID;
     private String description;
-    private String maintenanceFor;  // PropertyId
     private String scheduleDateTime;
     private String EstimatedTimeFrame;
     private String tenantSignOff;
     private String proofUpload;
     private String remarks;
 
-
+    @ManyToOne
+    @JoinColumn(name = "maintenanceFor", referencedColumnName = "unitId")
+    private Property maintenanceFor;
 
 }

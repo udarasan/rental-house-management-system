@@ -18,10 +18,12 @@ public class Sublet {
     private int subletRecordID;
     private String subletNIC;
     private String name;
-    private String subleasedProperty;// (Rented property ID - Extracted from the “Rented Property” table)
     private String subleaseStartDate;
     private String subleaseEndDate;
     private String subletIDPhotos;
     private String remarks;
 
+    @ManyToOne
+    @JoinColumn(name = "subleasedProperty", referencedColumnName = "recordId")
+    private RentedProperty subleasedProperty;
 }

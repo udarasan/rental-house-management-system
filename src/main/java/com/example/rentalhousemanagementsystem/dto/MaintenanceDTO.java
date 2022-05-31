@@ -1,5 +1,6 @@
 package com.example.rentalhousemanagementsystem.dto;
 
+import com.example.rentalhousemanagementsystem.entity.Property;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class MaintenanceDTO {
     private int appointmentID;
     private String description;
-    private String maintenanceFor;  // PropertyId
+    private Property maintenanceFor;  // PropertyId
     private String scheduleDateTime;
     private String EstimatedTimeFrame;
     private String tenantSignOff;
