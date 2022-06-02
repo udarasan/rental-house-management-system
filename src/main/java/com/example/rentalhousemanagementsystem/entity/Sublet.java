@@ -21,6 +21,7 @@ public class Sublet {
     private String subleaseStartDate;
     private String subleaseEndDate;
     private String subletIDPhotos;
+    private String addedBy;
     private String remarks;
 
     @ManyToOne

@@ -16,5 +16,6 @@ public class SubletDTO {
     private String subleaseStartDate;
     private String subleaseEndDate;
     private String subletIDPhotos;
+    private String addedBy;
     private String remarks;
 }
