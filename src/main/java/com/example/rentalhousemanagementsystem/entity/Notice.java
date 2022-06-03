@@ -20,6 +20,7 @@ public class Notice {
     private String message;
     private String takeDownNotice;
     private String postedBy;
+    private String fileName;
     private String date;
 
 }
